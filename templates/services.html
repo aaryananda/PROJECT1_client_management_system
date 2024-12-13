@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Services</h1>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Service ID</th>
+                    <th>Description</th>
+                    <th>Resources Required</th>
+                    <th>Estimated Cost</th>
+                    <th>Developing Team</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for service in services %}
+                <tr>
+                    <td>{{ service[0] }}</td> <!-- service_id -->
+                    <td>{{ service[1] }}</td> <!-- service_description -->
+                    <td>{{ service[2] }}</td> <!-- resources_required -->
+                    <td>{{ service[3] }}</td> <!-- estimated_cost -->
+                    <td>{{ service[4] }}</td> <!-- developing_team -->
+                    <td>
+                        <a href="/service/update/{{ service[0] }}" class="btn btn-warning btn-sm">Update</a>
+                        <a href="/service/delete/{{ service[0] }}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Button for Adding Service -->
+        <a href="/services/add" class="btn btn-primary mt-3">Add Service</a>
+
+
+    </div>
+</body>
+</html>

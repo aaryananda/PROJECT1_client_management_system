@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Invoice</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            let clientId = document.getElementById('client_id').value;
+            let serviceId = document.getElementById('service_id').value;
+            let invoiceDate = document.getElementById('invoice_date').value;
+            let totalAmount = document.getElementById('total_amount').value;
+           
+            let errorMessage = '';
+            let numericRegex = /^\d+(\.\d{1,2})?$/; // Allow decimal numbers
+
+            if (clientId.trim() === '') {
+                errorMessage += 'Client ID is required.\n';
+            }
+
+            if (serviceId.trim() === '') {
+                errorMessage += 'Service ID is required.\n';
+            }
+
+            if (invoiceDate.trim() === '') {
+                errorMessage += 'Invoice Date is required.\n';
+            }
+
+            if (!numericRegex.test(totalAmount)) {
+                errorMessage += 'Total Amount must be a valid number.\n';
+            }
+
+            if (errorMessage) {
+                document.getElementById('error-message').innerText = errorMessage;
+                return false;  // Prevent form submission
+            }
+
+            return true;  // Allow form submission
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Update Invoice</h1>
+        <div id="error-message" class="error"></div>
+        <form action="/invoice/update/{{ invoice[0] }}" method="post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="invoice_id">invoice ID:</label>
+                <input type="number" class="form-control" id="invoice_id" name="invoice_id" value="{{ invoice[0] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="client_id">Client ID:</label>
+                <input type="number" class="form-control" id="client_id" name="client_id" value="{{ invoice[1] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="service_id">Service ID:</label>
+                <input type="number" class="form-control" id="service_id" name="service_id" value="{{ invoice[2] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="invoice_date">Invoice Date:</label>
+                <input type="date" class="form-control" id="invoice_date" name="invoice_date" value="{{ invoice[3] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="total_amount">Total Amount:</label>
+                <input type="number" class="form-control" id="total_amount" name="total_amount" step="0.01" value="{{ invoice[4] }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Invoice</button>
+        </form>
+        <a href="/invoices" class="btn btn-secondary mt-3">Back to Invoices</a>
+    </div>
+</body>
+</html>

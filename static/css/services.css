@@ -1,0 +1,100 @@
+
+body {
+    background-image: url("../static/usecase.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+    /* General Button Styling */
+    .btn {
+        position: relative; /* Position for pseudo-element */
+        padding: 10px 20px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        text-align: center;
+        overflow: hidden; /* Hide overflow for pseudo-element */
+        transition: all 0.3s ease; /* Smooth transition for hover effects */
+        cursor: pointer;
+        background: linear-gradient(135deg, #6e7dff, #4a57d2); /* Default gradient background */
+    }
+
+    /* Button hover effects */
+    .btn:hover {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        transform: translateY(-2px); /* Lift effect */
+    }
+
+    /* Pseudo-element for hover effect */
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: rgba(255, 255, 255, 0.1); /* Light overlay */
+        border-radius: 50%; /* Circular overlay */
+        transition: all 0.4s ease;
+        z-index: 0; /* Behind the button text */
+        transform: translate(-50%, -50%) scale(0); /* Start as invisible */
+    }
+
+    /* Scale the overlay on hover */
+    .btn:hover::before {
+        transform: translate(-50%, -50%) scale(1); /* Make overlay visible */
+    }
+
+    /* Button text styling */
+    .btn span {
+        position: relative; /* Position for text */
+        z-index: 1; /* Above the overlay */
+    }
+
+    /* Specific styles for each button type */
+    .btn-success {
+        background: linear-gradient(135deg, #28a745, #218838);
+    }
+
+    .btn-danger {
+        background: linear-gradient(135deg, #dc3545, #c82333);
+    }
+
+    .btn-warning {
+        background: linear-gradient(135deg, #ffc107, #d39e00);
+    }
+
+    /* Blue color for Add Service button */
+    .btn-primary {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+    }
+
+    /* Hover effects for specific buttons */
+    .btn-success:hover {
+        background: linear-gradient(135deg, #218838, #1e7e34);
+    }
+
+    .btn-danger:hover {
+        background: linear-gradient(135deg, #c82333, #bd2130);
+    }
+
+    .btn-warning:hover {
+        background: linear-gradient(135deg, #d39e00, #b58300);
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #0056b3, #004085);
+    }
+    .white-text {
+        color: white; /* Set text color to white */
+    }
+
+

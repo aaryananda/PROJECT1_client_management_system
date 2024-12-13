@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Client Manager</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #001f3f; /* Dark blue background */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            let clientManagerName = document.getElementById('client_manager_name').value;
+            let department = document.getElementById('department').value;
+            let projectsAssigned = document.getElementById('projects_assigned').value;
+            let errorMessage = '';
+
+            // Regular expression for alphanumeric check
+            let nameRegex = /\d/;  // Used to check if the name contains digits
+
+            if (nameRegex.test(clientManagerName)) {
+                errorMessage += 'Client Manager Name should not contain numbers.\n';
+            }
+
+            if (nameRegex.test(department)) {
+                errorMessage += 'Department should not contain numbers.\n';
+            }
+
+            if (projectsAssigned === '') {
+                errorMessage += 'Projects Assigned is required.\n';
+            }
+
+            if (errorMessage) {
+                document.getElementById('error-message').innerText = errorMessage;
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Update Client Manager</h1>
+        <div id="error-message" class="error"></div>
+        
+        <form action="/client_manager/update/{{ manager[0] }}" method="post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="client_manager_name">Client Manager Name:</label>
+                <input type="text" class="form-control" id="client_manager_name" name="client_manager_name" value="{{ manager[1] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="contact_info">Contact Info:</label>
+                <input type="text" class="form-control" id="contact_info" name="contact_info" value="{{ manager[2] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input type="text" class="form-control" id="department" name="department" value="{{ manager[3] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="projects_assigned">Projects Assigned:</label>
+                <input type="text" class="form-control" id="projects_assigned" name="projects_assigned" value="{{ manager[4] }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Update Client Manager</button>
+        </form>
+        <a href="/client_managers" class="btn btn-secondary mt-3 btn-block">Back to Client Managers</a>
+    </div>
+</body>
+
+</html>

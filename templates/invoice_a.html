@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Home Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+
+
+    <!-- Additional CSS Files -->
+    <!-- <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+    <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-574-mexant.css') }}">
+    <!-- <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css"> -->
+    <!-- <link rel="stylesheet" href="assets/css/owl.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+    <!-- <link rel="stylesheet" href="assets/css/animate.css"> -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    
+<!--
+
+TemplateMo 574 Mexant
+
+https://templatemo.com/tm-574-mexant
+
+-->
+  </head>
+
+<body>
+
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">''
+                      <!-- ***** Logo Start ***** -->
+                      <a href="index.html" class="logo">
+                         <h3 class="bold-white">Client Management System</h3>
+                      </a>
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav">
+                          <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                          <li class="scroll-to-section"><a href="#services">Services</a></li>
+                          <li class="scroll-to-section"><a href="#about">About</a></li>
+                          <li class="has-sub">
+                              <a href="javascript:void(0)">Pages</a>
+                              <ul class="sub-menu">
+                                  <li><a href="about-us.html">About Us</a></li>
+                                  <li><a href="our-services.html">Our Services</a></li>
+                                  <li><a href="contact-us.html">Contact Us</a></li>
+                              </ul>
+                          </li>
+                          <li class="scroll-to-section"><a href="#testimonials">Testimonials</a></li>
+                          <li><a href="contact-us.html">Contact Support</a></li> 
+                      </ul>        
+                      <a class='menu-trigger'>
+                          <span>Menu</span>
+                      </a>
+                      <!-- ***** Menu End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** Main Banner Area Start ***** -->
+  <div class="swiper-container" id="top">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="slide-inner"  style="background-image: url('static/images/slide-01.jpg');"  >
+          <div class="container">
+            <div class="row">
+              
+                <div class="col-lg-8">
+                          
+                    <div class="header-text">
+                        <h2><br><em>Clients</em></h2>
+                      <div class="container">
+                          
+                        <table class="table table-striped mt-3">
+                            <thead>
+                                <tr>
+                                    <th>Invoice ID</th>
+                                    <th>Client Id</th>
+                                    <th>Service Id</th>
+                                    <th>Invoice Date</th>
+                                    <th>Total Amount</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for invoice in invoice %}
+                                <tr>
+                                    <td>{{ invoice[0] }}</td> <!-- service_id -->
+                                    <td>{{ invoice[1] }}</td> <!-- service_description -->
+                                    <td>{{ invoice[2] }}</td> <!-- resources_required -->
+                                    <td>{{ invoice[3] }}</td> <!-- estimated_cost -->
+                                    <td>{{ invoice[4] }}</td> <!-- developing_team -->
+                                    <td>
+                                        <a href="/invoice/update/{{ invoice[0] }}" class="btn btn-warning btn-sm">Update</a>
+                                        <a href="/invoice/delete/{{ invoice[0] }}" class="btn btn-danger btn-sm">Delete</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                
+                        <!-- Button for Adding Service -->
+                        <a href="/invoice/add" class="btn btn-primary mt-3">Add invoice</a>
+
+                      
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <style>
+        /* Make the table text color lighter */
+        .table {
+            color: #e0e0e0; /* Lighter color for the table text */
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background for the table */
+            width: 100%; /* Make the table fill the width of the container */
+            margin: 20px auto; /* Center the table */
+            border-collapse: collapse; /* Merge borders for a cleaner look */
+        }
+      
+        /* Table header styling */
+        .table thead th {
+            background-color: rgba(255, 255, 255, 0.2); /* Light background for headers */
+            color: #ffffff; /* White text for headers */
+            font-weight: bold;
+            padding: 12px;
+            text-align: left; /* Align text to the left */
+        }
+      
+        /* Table row styling */
+        .table tbody tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Add subtle border between rows */
+        }
+      
+        .table tbody td {
+            padding: 10px;
+            color: #f0f0f0; /* Lighter color for table data */
+        }
+      
+        /* Change specific clients, IDs, and managers to white */
+        .white-text {
+            color: #ffffff !important; /* Force white text */
+        }
+      
+        /* Hover effect for table rows */
+        .table tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.05); /* Light hover effect */
+        }
+      
+        /* Button styling */
+        .btn {
+            margin-right: 5px; /* Add space between buttons */
+            padding: 5px 10px;
+        }
+      
+        /* Change Services button to blue */
+        .btn-dark {
+            background-color: #007bff !important; /* Blue background */
+            border-color: #007bff !important; /* Blue border */
+        }
+      
+        /* Styling the buttons section below the table */
+        .buttons {
+            display: flex;
+            justify-content: center; /* Center the buttons */
+            margin-top: 20px;
+        }
+      
+        .green-button a, .orange-button a {
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+      
+        .green-button a {
+            background-color: #28a745; /* Green color */
+        }
+      
+        .orange-button a {
+            background-color: #ff8c00; /* Orange color */
+        }
+      
+        .green-button a:hover, .orange-button a:hover {
+            background-color: #006400; /* Dark green on hover */
+        }
+      
+        .orange-button a:hover {
+            background-color: #ff4500; /* Darker orange on hover */
+        }
+        .spacious-table th, .spacious-table td {
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+.spacious-table {
+    width: 100%;
+    table-layout: auto;
+    border-spacing: 10px;
+}
+
+.btn {
+    padding: 10px 15px;
+    font-size: 1rem;
+}
+
+      </style>
+      
+      <div class="swiper-slide">
+        <div class="slide-inner"  style="background-image: url('static/images/slide-02.jpg');">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-lg-8">
+                          
+                            <div class="header-text">
+                                <h2><br><em>Services</em></h2>
+                              <div class="container">
+                                <table class="table table-striped mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th>Invoice ID</th>
+                                            <th>Client Id</th>
+                                            <th>Service Id</th>
+                                            <th>Invoice Date</th>
+                                            <th>Total Amount</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for invoice in invoice %}
+                                        <tr>
+                                            <td>{{ invoice[0] }}</td> <!-- service_id -->
+                                            <td>{{ invoice[1] }}</td> <!-- service_description -->
+                                            <td>{{ invoice[2] }}</td> <!-- resources_required -->
+                                            <td>{{ invoice[3] }}</td> <!-- estimated_cost -->
+                                            <td>{{ invoice[4] }}</td> <!-- developing_team -->
+                                            <td>
+                                                <a href="/invoice/update/{{ invoice[0] }}" class="btn btn-warning btn-sm">Update</a>
+                                                <a href="/invoice/delete/{{ invoice[0] }}" class="btn btn-danger btn-sm">Delete</a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                 
+                                <a href="/invoice/add" class="btn btn-primary mt-3">Add invoice</a>
+
+                              </div>
+                          </div>
+      
+                          
+      
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="slide-inner" style="background-image: url('static/images/slide-01.jpg');">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="header-text">
+                  <h2>Best One in Town<br>&amp; Crypto <em>Services</em></h2>
+                  <div class="div-dec"></div>
+                  <p>When you browse through different tags on TemplateMo website, you can see a variety of CSS templates which are responsive website designs for different individual needs. Please tell your friends about our website. Thank you.</p>
+                  <div class="buttons">
+                    <div class="green-button">
+                      <a href="#services">Discover More</a> <!-- This button links to the services section -->
+                  </div>
+                  
+                    <div class="orange-button">
+                      <a href="#">Contact Us</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-button-next swiper-button-white"></div>
+    <div class="swiper-button-prev swiper-button-white"></div>
+  </div>
+
+  <!-- ***** Main Banner Area End ***** -->
+
+  
+
+
+  <!-- <section class="partners">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 col-sm-4 col-6">
+          <div class="item">
+            <img src="assets/images/client-01.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-4 col-6">
+          <div class="item">
+            <img src="assets/images/client-01.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-4 col-6">
+          <div class="item">
+            <img src="assets/images/client-01.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-4 col-6">
+          <div class="item">
+            <img src="assets/images/client-01.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-4 col-6">
+          <div class="item">
+            <img src="assets/images/client-01.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-4 col-6">
+          <div class="item">
+            <img src="images/client-01.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © 2022 Mexant Co., Ltd. All Rights Reserved. 
+          
+          <br>Designed by <a title="CSS Templates" rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+    <script src="jquery/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/isotope.min.js"></script>
+    <script src="js/owl-carousel.js"></script>
+
+    <script src="js/tabs.js"></script>
+    <script src="js/swiper.js"></script>
+    <script src="js/custom.js"></script>
+    <script>
+        var interleaveOffset = 0.5;
+
+      var swiperOptions = {
+        loop: true,
+        speed: 1000,
+        grabCursor: true,
+        watchSlidesProgress: true,
+        mousewheelControl: true,
+        keyboardControl: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
+        },
+        on: {
+          progress: function() {
+            var swiper = this;
+            for (var i = 0; i < swiper.slides.length; i++) {
+              var slideProgress = swiper.slides[i].progress;
+              var innerOffset = swiper.width * interleaveOffset;
+              var innerTranslate = slideProgress * innerOffset;
+              swiper.slides[i].querySelector(".slide-inner").style.transform =
+                "translate3d(" + innerTranslate + "px, 0, 0)";
+            }      
+          },
+          touchStart: function() {
+            var swiper = this;
+            for (var i = 0; i < swiper.slides.length; i++) {
+              swiper.slides[i].style.transition = "";
+            }
+          },
+          setTransition: function(speed) {
+            var swiper = this;
+            for (var i = 0; i < swiper.slides.length; i++) {
+              swiper.slides[i].style.transition = speed + "ms";
+              swiper.slides[i].querySelector(".slide-inner").style.transition =
+                speed + "ms";
+            }
+          }
+        }
+      };
+
+      var swiper = new Swiper(".swiper-container", swiperOptions);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Usecase</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #001f3f; /* Dark blue background */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Update Usecase</h1>
+        
+        <form action="/usecases/update/{{ usecase[0] }}" method="post">
+            <input type="hidden" name="service_id" value="{{ usecase[0] }}"> <!-- Hidden field for service ID -->
+            <input type="hidden" name="client_id" value="{{ usecase[1] }}"> <!-- Hidden field for client ID -->
+            
+            <div class="form-group">
+                <label for="start_date">Start Date:</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" value="{{ usecase[2] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <input type="text" class="form-control" id="status" name="status" value="{{ usecase[3] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="custom_price">Custom Price:</label>
+                <input type="number" class="form-control" id="custom_price" name="custom_price" step="0.01" value="{{ usecase[4] }}" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Update Usecase</button>
+        </form>
+        
+        <a href="/usecases/{{ usecase[1] }}" class="btn btn-secondary mt-3 btn-block">Back to Usecases</a>
+    </div>
+</body>
+
+</html>

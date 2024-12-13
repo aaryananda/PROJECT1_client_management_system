@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Client</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #001f3f; /* Dark blue background */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            let name = document.getElementById('name').value;
+            let clientManager = document.getElementById('client_manager').value;
+            let contactInfo = document.getElementById('contact_info').value;
+            let servicesUsed = document.getElementById('services_used').value;
+            let errorMessage = '';
+
+            let alphanumericRegex = /^[A-Za-z0-9]+$/;
+            let nameRegex = /\d/; 
+
+            if (nameRegex.test(name)) {
+                errorMessage += 'Name should not contain numbers.\n';
+            }
+
+            if (!alphanumericRegex.test(document.getElementById('client_id').value)) {
+                errorMessage += 'Client ID can only contain letters and numbers.\n';
+            }
+
+            if (nameRegex.test(clientManager)) {
+                errorMessage += 'Client Manager should not contain numbers.\n';
+            }
+
+            if (contactInfo === '') {
+                errorMessage += 'Contact Information is required.\n';
+            }
+
+            if (servicesUsed === '') {
+                errorMessage += 'Services Used is required.\n';
+            }
+
+            if (errorMessage) {
+                document.getElementById('error-message').innerText = errorMessage;
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Update Client</h1>
+        <div id="error-message" class="error"></div>
+        <form action="/clients/update/{{ client[0] }}" method="post" onsubmit="return validateForm()">
+            <input type="hidden" id="client_id" name="client_id" value="{{ client[0] }}" required>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ client[1] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="contact_info">Update Contact Information:</label>
+                <input type="text" class="form-control" id="contact_info" name="contact_info" value="{{ client[2] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="services_used">Update Services Used:</label>
+                <input type="text" class="form-control" id="services_used" name="services_used" value="{{ client[3] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="client_manager">Update Client Manager:</label>
+                <input type="text" class="form-control" id="client_manager" name="client_manager" value="{{ client[4] }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Update Client</button>
+        </form>
+        <a href="/clients" class="btn btn-secondary mt-3 btn-block">Back to Clients</a>
+    </div>
+</body>
+
+</html>

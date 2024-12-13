@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Use Case</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0b2760; /* Dark blue background */
+            color: black; /* Light text color */
+            font-family: 'Poppins', sans-serif; /* Font family */
+        }
+
+        .container {
+            margin-top: 50px;
+            background-color: rgb(255, 252, 252); /* Slightly transparent black for the container */
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: black; /* White color for the header */
+            text-align: center; /* Center align */
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background for input fields */
+            color: black /* White text for inputs */
+        }
+
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.2); /* Darker transparent background on focus */
+            color: black /* Keep text color white */
+            border-color #007bff; /* Blue border color on focus */
+        }
+
+        /* Button styles */
+        .btn-success {
+            background-color: #28a745; /* Green button */
+            border-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838; /* Dark green on hover */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Secondary button color */
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Darker secondary on hover */
+        }
+    </style>
+    <script>
+        function validateForm() {
+            let use_case_name = document.getElementById('use_case_name').value;
+            let description = document.getElementById('description').value;
+            let errorMessage = '';
+
+            // Validate use case name (required field)
+            if (use_case_name.trim() === '') {
+                errorMessage += 'Use Case Name is required.\n';
+            }
+
+            // Validate description (required field)
+            if (description.trim() === '') {
+                errorMessage += 'Description is required.\n';
+            }
+
+            if (errorMessage) {
+                document.getElementById('error-message').innerText = errorMessage;
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-5">Add Service</h1>
+        <div id="error-message" class="error"></div>
+        
+        <!-- Form to Add Service -->
+        <form action="/usecases/add/{{ client_id }}" method="post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="service_id">Service ID:</label>
+                <input type="text" class="form-control" id="service_id" name="service_id" required>
+            </div>
+            <div class="form-group">
+                <label for="client_id">Client ID:</label>
+                <input type="number" class="form-control" id="client_id" name="client_id" value="{{ client_id }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="start_date">Start Date:</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" required>
+            </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <input type="text" class="form-control" id="status" name="status" maxlength="50" required>
+            </div>
+            <div class="form-group">
+                <label for="custom_price">Custom Price (up to 2 decimal places):</label>
+                <input type="number" class="form-control" id="custom_price" name="custom_price" step="0.01" min="0" required>
+            </div>
+            
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-success mt-3">Add Service</button>
+        </form>
+        
+        <!-- Back Button -->
+        <a href="/usecases/{{ client_id }}" class="btn btn-secondary mt-3">Back to Services</a>
+    </div> 
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+/* Flexbox for proper alignment */
+.btn-group {
+    display: flex;
+    flex-wrap: wrap; /* Ensures buttons wrap on smaller screens */
+}
+
+/* Space between buttons */
+.btn-group .btn {
+    margin-right: 10px; /* Space between buttons horizontally */
+    margin-bottom: 10px; /* Space between buttons vertically for wrapping */
+}
+
+.btn-group .btn:last-child {
+    margin-right: 0; /* Remove margin from the last button */
+}
+
+/* Button Styling */
+.btn {
+    border-radius: 30px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Center the table within its container */
+.header-text {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    flex-direction: column; /* Stack items vertically */
+    color: azure;
+}
+
+
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark Button Styling */
+.btn-dark:hover {
+    background-color: #495057;
+}
+
+/* Warning Button Styling */
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+/* Danger Button Styling */
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Primary Button Styling */
+.btn-primary:hover {
+    background-color: #0056b3;
+}
