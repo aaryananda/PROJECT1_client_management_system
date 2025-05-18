@@ -16,7 +16,7 @@ def get_db_connection():
         host=app.config['PG_HOST'],
         database=app.config['PG_DB'],
         user=app.config['PG_USER'],
-        password=app.config['PG_PASSWORD']
+        password=app.config['PG_PASSWORD'],
         port=5432
     )
     return conn
