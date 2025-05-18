@@ -4,10 +4,11 @@ import psycopg2
 app = Flask(__name__)
 
 # Configure PostgreSQL connection
-app.config['PG_HOST'] = 'localhost'
-app.config['PG_USER'] = 'postgres'
-app.config['PG_PASSWORD'] = 'jkm'
-app.config['PG_DB'] = 'cms1'
+app.config['PG_HOST'] = 'dpg-d0l19s3uibrs739uj17g-a.db.render.com'  # Or copy the exact host shown in Render
+app.config['PG_USER'] = 'cms_db_tv9y_user'         # e.g., render_user
+app.config['PG_PASSWORD'] = 'rk5Q6isz1VgX5aqi9wEXmfdcpf4C8ANY' # copy from Render
+app.config['PG_DB'] = 'cms_db_tv9y'           # copy from Render
+
 
 # Function to establish a database connection
 def get_db_connection():
