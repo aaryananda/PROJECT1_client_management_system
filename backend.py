@@ -1,14 +1,18 @@
 from flask import Flask, render_template, request, redirect
 import psycopg2
 
+
+
+from dotenv import load_dotenv
+import os
 app = Flask(__name__)
+load_dotenv()
 
-# Configure PostgreSQL connection
-app.config['PG_HOST'] = 'dpg-d0l19s3uibrs739uj17g-a'  # Or copy the exact host shown in Render
-app.config['PG_USER'] = 'cms_db_tv9y_user'         # e.g., render_user
-app.config['PG_PASSWORD'] = 'rk5Q6isz1VgX5aqi9wEXmfdcpf4C8ANY' # copy from Render
-app.config['PG_DB'] = 'cms_db_tv9y'           # copy from Render
-
+app.config['PG_HOST'] = os.getenv("PG_HOST")
+app.config['PG_USER'] = os.getenv("PG_USER")
+app.config['PG_PASSWORD'] = os.getenv("PG_PASSWORD")
+app.config['PG_DB'] = os.getenv("PG_DB")
+app.config['PG_PORT'] = int(os.getenv("PG_PORT"))
 
 # Function to establish a database connection
 def get_db_connection():
@@ -17,7 +21,7 @@ def get_db_connection():
         database=app.config['PG_DB'],
         user=app.config['PG_USER'],
         password=app.config['PG_PASSWORD'],
-        port=5432
+        port=app.config['PG_PORT']
     )
     return conn
 
